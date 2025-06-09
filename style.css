@@ -75,7 +75,7 @@ body {
 .hero {
   padding: 100px 20px;
   text-align: center;
-  background: url('images/slot.jpg') center/cover no-repeat;
+  background: url('images/hero-bg.jpg') center/cover no-repeat;
   background-blend-mode: overlay;
   background-color: rgba(0, 0, 0, 0.6);
 }
