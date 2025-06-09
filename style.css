@@ -1,211 +1,64 @@
-/* === Global Styles === */
+/* Google Fonts */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background: #0b0c10;
+  background: #121212;
   color: white;
 }
 
-/* === Header Styles (New Responsive Header) === */
+/* Header */
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #0e0e0e;
-  padding: 1rem 2rem;
-  color: white;
+  background: #1e1e1e;
+  padding: 15px 30px;
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 10;
 }
 
 .logo {
-  font-size: 1.8rem;
-  font-weight: bold;
   font-family: 'Orbitron', sans-serif;
-  color: #f5c518;
+  font-size: 28px;
+  color: #ffcc00;
 }
 
 .nav ul {
   display: flex;
+  gap: 20px;
   list-style: none;
-  gap: 2rem;
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
 
 .nav a {
-  color: white;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
+  color: white;
+  font-weight: 600;
+  transition: color 0.3s;
 }
 
 .nav a:hover {
-  color: #f5c518;
+  color: #ffcc00;
 }
 
+/* Mobile Menu */
 .menu-toggle {
   display: none;
-  font-size: 2rem;
+  font-size: 28px;
   cursor: pointer;
-}
-
-/* === Hero Section === */
-.hero {
-  background-image: url("images/hero-bg.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 6rem 2rem;
-  text-align: center;
   color: white;
-  position: relative;
-  overflow: hidden;
-  animation: zoomInHeroBg 30s ease-in-out infinite alternate;
 }
 
-.hero::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  z-index: 1;
-}
-
-.hero h2,
-.hero button {
-  position: relative;
-  z-index: 2;
-}
-
-.hero h2 {
-  font-size: 2rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  animation: fadeInUp 1s ease-out forwards;
-  opacity: 0;
-}
-
-.hero button {
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  background: #66fcf1;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 600;
-  animation: fadeInUp 1s ease-out 0.5s forwards;
-  opacity: 0;
-}
-
-/* === Featured Games Section === */
-.games-section {
-  padding: 4rem 2rem;
-  text-align: center;
-}
-
-.games-section h2 {
-  font-size: 2rem;
-  color: #66fcf1;
-  margin-bottom: 2rem;
-}
-
-.games-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  justify-items: center;
-}
-
-.game-card {
-  background: #1f2833;
-  border-radius: 12px;
-  padding: 1rem;
-  text-align: center;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.game-card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-}
-
-.game-card img {
-  max-width: 100%;
-  border-radius: 8px;
-  height: 150px;
-  object-fit: cover;
-}
-
-.game-card h3 {
-  margin: 1rem 0 0.5rem;
-  font-size: 1.2rem;
-}
-
-.game-card button {
-  background: #66fcf1;
-  color: #0b0c10;
-  border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-/* === Footer === */
-footer {
-  background: #1f2833;
-  text-align: center;
-  padding: 1rem;
-  color: #66fcf1;
-  font-size: 0.9rem;
-}
-
-/* === Animations === */
-@keyframes fadeInUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes zoomInHeroBg {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.05);
-  }
-}
-
-/* === Media Queries (Mobile) === */
 @media (max-width: 768px) {
-  .games-grid {
-    grid-template-columns: 1fr;
-    padding: 0 1rem;
-  }
-
-  .hero h2 {
-    font-size: 1.5rem;
-  }
-
   .nav ul {
     flex-direction: column;
-    background-color: #1a1a1a;
+    background: #1e1e1e;
     position: absolute;
-    top: 70px;
-    right: 0;
+    top: 60px;
+    right: 30px;
     width: 200px;
-    padding: 1rem;
     display: none;
   }
 
@@ -217,6 +70,101 @@ footer {
     display: block;
   }
 }
+
+/* Hero Section */
+.hero {
+  padding: 100px 20px;
+  text-align: center;
+  background: url('images/slot.jpg') center/cover no-repeat;
+  background-blend-mode: overlay;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.hero h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.hero button {
+  padding: 12px 25px;
+  background: #ffcc00;
+  border: none;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.hero button:hover {
+  background: #e6b800;
+}
+
+/* Games Section */
+.games-section {
+  padding: 60px 20px;
+  text-align: center;
+  background-color: #1a1a1a;
+}
+
+.games-section h2 {
+  font-size: 32px;
+  margin-bottom: 30px;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 0 20px;
+}
+
+.game-card {
+  background: #2a2a2a;
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.game-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(255, 204, 0, 0.3);
+}
+
+.game-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.game-card h3 {
+  margin: 15px 0;
+  font-size: 22px;
+}
+
+.game-card button {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background: #ffcc00;
+  border: none;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.game-card button:hover {
+  background: #e6b800;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #1e1e1e;
+  color: #aaa;
+  font-size: 14px;
+}
+
 
 
 
