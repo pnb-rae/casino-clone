@@ -1,10 +1,11 @@
 console.log("Casino site loaded...");
 
 const toggleButton = document.getElementById("menu-toggle");
-const navMenu = document.querySelector(".nav ul");
+const nav = document.querySelector(".nav");
 
 toggleButton.addEventListener("click", () => {
-  navMenu.classList.toggle("show");
+  nav.classList.toggle("show");
 });
+
 
 
