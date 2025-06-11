@@ -157,6 +157,7 @@ button {
   font-size: 28px;
   cursor: pointer;
   color: white;
+  z-index: 101;
 }
 
 @media (max-width: 992px) {
@@ -164,12 +165,14 @@ button {
     flex-direction: column;
     position: fixed;
     top: 70px;
-    right: -100%;
+    right: -300px;
     width: 300px;
     height: calc(100vh - 70px);
     background: var(--primary-light);
     padding: 20px;
     transition: right 0.3s ease;
+    z-index: 100;
+    overflow-y: auto;
   }
 
   .nav ul.show {
@@ -182,22 +185,44 @@ button {
     display: none;
     opacity: 1;
     background: transparent;
+    padding-left: 15px;
+    margin-top: 10px;
   }
 
   .dropdown:hover .dropdown-content {
+    display: block;
     top: 0;
+  }
+
+  .dropdown > a:after {
+    display: none;
   }
 
   .menu-toggle {
     display: block;
   }
 
-  .dropdown > a:after {
-    display: none;
+  /* Prevent scrolling when menu is open */
+  body.menu-open {
+    overflow: hidden;
   }
 }
 
-/* Hero Section */
+@media (max-width: 480px) {
+  .header {
+    padding: 15px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .nav ul {
+    width: 250px;
+  }
+}
+
+/* Rest of your CSS remains the same */
 .hero {
   padding: 120px 20px;
   text-align: center;
@@ -501,7 +526,7 @@ button {
   background: var(--accent-dark);
 }
 
-/* Authentication Pages - Updated with password field fixes */
+/* Authentication Pages */
 .auth-main {
   min-height: calc(100vh - 150px);
   display: flex;
@@ -775,16 +800,6 @@ footer {
 
   .auth-container {
     padding: 30px 20px;
-  }
-}
-
-@media (max-width: 480px) {
-  .header {
-    padding: 15px;
-  }
-
-  .logo {
-    font-size: 24px;
   }
 }
  
