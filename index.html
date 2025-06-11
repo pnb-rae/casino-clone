@@ -16,7 +16,10 @@
   <!-- Google Fonts: Poppins + Orbitron -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -26,10 +29,26 @@
     <div class="logo">Classic Casino</div>
     <nav class="nav" id="navbar">
       <ul>
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Games</a></li>
-        <li><a href="#">Promotions</a></li>
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Games <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="#"><i class="fas fa-dice"></i> Slots</a>
+            <a href="#"><i class="fas fa-chess-queen"></i> Table Games</a>
+            <a href="#"><i class="fas fa-video"></i> Live Casino</a>
+            <a href="#"><i class="fas fa-poker-chip"></i> Poker</a>
+          </div>
+        </li>
+        <li class="dropdown">
+          <a href="#">Promotions <i class="fas fa-chevron-down"></i></a>
+          <div class="dropdown-content">
+            <a href="#"><i class="fas fa-gift"></i> Welcome Bonus</a>
+            <a href="#"><i class="fas fa-coins"></i> Daily Rewards</a>
+            <a href="#"><i class="fas fa-trophy"></i> Tournaments</a>
+          </div>
+        </li>
         <li><a href="login.html">Login</a></li>
+        <li><a href="signup.html" class="signup-btn">Sign Up</a></li>
       </ul>
     </nav>
     <div class="menu-toggle" id="menu-toggle">&#9776;</div>
@@ -37,54 +56,179 @@
 
   <main>
     <section class="hero">
-      <h2>Welcome to the Ultimate Casino Experience</h2>
-      <button>Play Now</button>
+      <div class="hero-content">
+        <h1>WELCOME TO CLASSIC CASINO</h1>
+        <p>Experience premium gaming with exclusive bonuses</p>
+        <div class="hero-buttons">
+          <button class="primary-btn">JOIN NOW</button>
+          <button class="secondary-btn">LEARN MORE</button>
+        </div>
+      </div>
     </section>
 
-    <section class="games-section">
-      <h2>Featured Games</h2>
-      <div class="games-grid">
-        <div class="game-card">
-          <img src="images/slot.jpg" alt="Slot Machine">
+    <section class="game-categories">
+      <h2>GAME CATEGORIES</h2>
+      <div class="categories-grid">
+        <div class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-dice"></i>
+          </div>
           <h3>Slots</h3>
-          <button>Play</button>
+          <p>200+ exciting slot games</p>
         </div>
-        <div class="game-card">
-          <img src="images/roulette.jpg" alt="Roulette">
-          <h3>Roulette</h3>
-          <button>Play</button>
+        <div class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-chess-queen"></i>
+          </div>
+          <h3>Table Games</h3>
+          <p>Classic casino favorites</p>
         </div>
-        <div class="game-card">
-          <img src="images/poker.jpg" alt="Poker">
+        <div class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-video"></i>
+          </div>
+          <h3>Live Casino</h3>
+          <p>Real dealers, real action</p>
+        </div>
+        <div class="category-card">
+          <div class="category-icon">
+            <i class="fas fa-poker-chip"></i>
+          </div>
           <h3>Poker</h3>
-          <button>Play</button>
+          <p>Test your skills</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="live-casino">
+      <div class="section-header">
+        <h2>LIVE CASINO</h2>
+        <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div class="live-games-grid">
+        <div class="live-game-card">
+          <div class="live-badge">LIVE</div>
+          <img src="images/live-roulette.jpg" alt="Live Roulette">
+          <div class="game-info">
+            <h3>Roulette</h3>
+            <div class="players-count">
+              <i class="fas fa-users"></i> 1,245 playing
+            </div>
+            <button>Play Now</button>
+          </div>
+        </div>
+        <div class="live-game-card">
+          <div class="live-badge">LIVE</div>
+          <img src="images/live-blackjack.jpg" alt="Live Blackjack">
+          <div class="game-info">
+            <h3>Blackjack</h3>
+            <div class="players-count">
+              <i class="fas fa-users"></i> 987 playing
+            </div>
+            <button>Play Now</button>
+          </div>
+        </div>
+        <div class="live-game-card">
+          <div class="live-badge">LIVE</div>
+          <img src="images/live-baccarat.jpg" alt="Live Baccarat">
+          <div class="game-info">
+            <h3>Baccarat</h3>
+            <div class="players-count">
+              <i class="fas fa-users"></i> 756 playing
+            </div>
+            <button>Play Now</button>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="promotions-section">
-      <h2>Latest Promotions</h2>
+      <div class="section-header">
+        <h2>HOT PROMOTIONS</h2>
+        <a href="#" class="view-all">View All <i class="fas fa-arrow-right"></i></a>
+      </div>
       <div class="promo-grid">
-        <div class="promo-card">
-          <h3>Welcome Bonus</h3>
-          <p>Get 100% bonus up to $500 on your first deposit!</p>
+        <div class="promo-card large">
+          <img src="images/welcome-bonus.jpg" alt="Welcome Bonus">
+          <div class="promo-content">
+            <h3>WELCOME BONUS</h3>
+            <p>Get 100% bonus up to $1000 + 50 free spins on your first deposit!</p>
+            <button>CLAIM NOW</button>
+          </div>
         </div>
         <div class="promo-card">
-          <h3>Free Spins</h3>
-          <p>Play slots and earn up to 50 free spins every week.</p>
+          <img src="images/free-spins.jpg" alt="Free Spins">
+          <div class="promo-content">
+            <h3>WEEKLY FREE SPINS</h3>
+            <p>Get 20 free spins every Friday</p>
+            <button>LEARN MORE</button>
+          </div>
+        </div>
+        <div class="promo-card">
+          <img src="images/cashback.jpg" alt="Cashback">
+          <div class="promo-content">
+            <h3>10% CASHBACK</h3>
+            <p>Get 10% cashback every Sunday</p>
+            <button>LEARN MORE</button>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    &copy; 2025 Classic Casino. All rights reserved.
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About Us</h4>
+        <ul>
+          <li><a href="#">About Classic Casino</a></li>
+          <li><a href="#">Responsible Gaming</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Games</h4>
+        <ul>
+          <li><a href="#">Slots</a></li>
+          <li><a href="#">Table Games</a></li>
+          <li><a href="#">Live Casino</a></li>
+          <li><a href="#">Poker</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Payment Methods</a></li>
+          <li><a href="#">Game Rules</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect With Us</h4>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; 2025 Classic Casino. All rights reserved.
+      <div class="payment-methods">
+        <i class="fab fa-cc-visa"></i>
+        <i class="fab fa-cc-mastercard"></i>
+        <i class="fab fa-cc-paypal"></i>
+        <i class="fab fa-bitcoin"></i>
+      </div>
+    </div>
   </footer>
 
   <script src="script.js"></script>
 </body>
 </html>
-
 
 
 
