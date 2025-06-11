@@ -202,7 +202,6 @@ button {
     display: block;
   }
 
-  /* Prevent scrolling when menu is open */
   body.menu-open {
     overflow: hidden;
   }
@@ -222,7 +221,7 @@ button {
   }
 }
 
-/* Rest of your CSS remains the same */
+/* Hero Section */
 .hero {
   padding: 120px 20px;
   text-align: center;
@@ -371,6 +370,7 @@ button {
 .section-header h2 {
   font-size: 36px;
   position: relative;
+  display: inline-block;
 }
 
 .section-header h2:after {
@@ -380,6 +380,7 @@ button {
   height: 3px;
   background: var(--accent-color);
   margin-top: 15px;
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.7);
 }
 
 .view-all {
@@ -388,6 +389,12 @@ button {
   display: flex;
   align-items: center;
   gap: 5px;
+  text-shadow: 0 0 5px rgba(255, 204, 0, 0.5);
+  transition: text-shadow 0.3s ease;
+}
+
+.view-all:hover {
+  text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
 }
 
 .live-games-grid {
@@ -421,6 +428,20 @@ button {
   font-size: 12px;
   font-weight: bold;
   z-index: 2;
+  animation: livePulse 2s infinite;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+}
+
+@keyframes livePulse {
+  0% {
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.7);
+  }
 }
 
 .live-game-card img {
@@ -456,10 +477,13 @@ button {
   border-radius: 5px;
   font-weight: 600;
   color: var(--primary-dark);
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+  transition: all 0.3s ease;
 }
 
 .game-info button:hover {
   background: var(--accent-dark);
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
 }
 
 /* Promotions Section */
@@ -481,10 +505,32 @@ button {
   border-radius: 10px;
   overflow: hidden;
   transition: transform 0.3s;
+  position: relative;
 }
 
-.promo-card:hover {
-  transform: translateY(-10px);
+.promo-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0);
+  transition: box-shadow 0.3s ease;
+  pointer-events: none;
+}
+
+.promo-card:hover::before {
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.7);
+}
+
+.promo-card.large::before {
+  box-shadow: 0 0 20px rgba(255, 204, 0, 0);
+}
+
+.promo-card.large:hover::before {
+  box-shadow: 0 0 20px rgba(255, 204, 0, 0.9);
 }
 
 .promo-card.large {
@@ -520,10 +566,13 @@ button {
   border-radius: 5px;
   font-weight: 600;
   color: var(--primary-dark);
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+  transition: all 0.3s ease;
 }
 
 .promo-content button:hover {
   background: var(--accent-dark);
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
 }
 
 /* Authentication Pages */
