@@ -501,7 +501,7 @@ button {
   background: var(--accent-dark);
 }
 
-/* Authentication Pages */
+/* Authentication Pages - Updated with password field fixes */
 .auth-main {
   min-height: calc(100vh - 150px);
   display: flex;
@@ -556,6 +556,7 @@ button {
 
 .input-with-icon {
   position: relative;
+  width: 100%;
 }
 
 .input-with-icon i {
@@ -564,6 +565,7 @@ button {
   top: 50%;
   transform: translateY(-50%);
   color: var(--text-secondary);
+  z-index: 1;
 }
 
 .input-with-icon input {
@@ -574,6 +576,8 @@ button {
   border-radius: 5px;
   color: var(--text-primary);
   font-size: 15px;
+  position: relative;
+  z-index: 2;
 }
 
 .input-with-icon input:focus {
@@ -585,6 +589,8 @@ button {
   left: auto;
   right: 15px;
   cursor: pointer;
+  z-index: 3;
+  pointer-events: auto;
 }
 
 .password-hint {
@@ -779,6 +785,8 @@ footer {
 
   .logo {
     font-size: 24px;
+  }
+}
  
 
 
