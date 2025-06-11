@@ -353,7 +353,7 @@ button {
   font-size: 14px;
 }
 
-/* Live Casino Section */
+/* Live Casino Section - Updated with Glow Effect */
 .live-casino {
   padding: 80px 20px;
   background: var(--primary-dark);
@@ -413,6 +413,24 @@ button {
   transition: transform 0.3s;
 }
 
+.live-game-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0);
+  transition: box-shadow 0.3s ease;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.live-game-card:hover::before {
+  box-shadow: 0 0 15px rgba(255, 204, 0, 0.7);
+}
+
 .live-game-card:hover {
   transform: translateY(-10px);
 }
@@ -427,7 +445,7 @@ button {
   border-radius: 5px;
   font-size: 12px;
   font-weight: bold;
-  z-index: 2;
+  z-index: 3;
   animation: livePulse 2s infinite;
   box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
 }
@@ -449,10 +467,14 @@ button {
   height: 180px;
   object-fit: cover;
   display: block;
+  position: relative;
+  z-index: 2;
 }
 
 .game-info {
   padding: 20px;
+  position: relative;
+  z-index: 2;
 }
 
 .game-info h3 {
