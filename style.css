@@ -913,7 +913,12 @@ footer {
     padding: 30px 20px;
   }
 }
- 
+ /* Add this to your style.css file */
+.category-icon .fa-poker-chip {
+  color: var(--accent-color); /* Force the color */
+  font-size: 30px; /* Ensure proper size */
+  display: block; /* Ensure it's visible */
+}
 
 
 
