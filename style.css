@@ -508,107 +508,136 @@ button {
   box-shadow: 0 0 15px rgba(255, 204, 0, 0.8);
 }
 
-/* Promotions Bar Section */
-.promotions-bar {
-  padding: 60px 20px;
+/* Promotions Section - Updated Responsive Version */
+.promotions-section {
+  padding: 80px 20px;
   background: var(--primary-light);
 }
 
-.promo-bar-container {
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+.promo-card {
   background: var(--secondary-dark);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  min-height: 300px;
 }
 
-.promo-bar-header {
-  padding: 20px;
-  background: var(--accent-color);
-  color: var(--primary-dark);
-  text-align: center;
-}
-
-.promo-bar-header h3 {
-  font-size: 24px;
-  margin-bottom: 5px;
-}
-
-.promo-bar-content {
-  padding: 30px;
+.promo-card.featured {
+  grid-column: 1 / -1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
-.promo-bar-text {
-  color: var(--text-secondary);
-  line-height: 1.6;
+.promo-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-.promo-bar-cta {
+.promo-card:hover img {
+  transform: scale(1.03);
+}
+
+.promo-content {
+  padding: 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 15px;
+  flex-direction: column;
+  height: calc(100% - 180px);
 }
 
-.promo-bar-bonus {
-  font-size: 18px;
+.promo-content h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
   color: var(--accent-color);
-  font-weight: 600;
 }
 
-.promo-bar-button {
-  padding: 12px 30px;
+.promo-content p {
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.promo-content button {
+  padding: 10px 20px;
   background: var(--accent-color);
-  color: var(--primary-dark);
   border: none;
   border-radius: 5px;
   font-weight: 600;
-  transition: all 0.3s;
+  color: var(--primary-dark);
+  align-self: flex-start;
+  transition: all 0.3s ease;
 }
 
-.promo-bar-button:hover {
+.promo-content button:hover {
   background: var(--accent-dark);
-  transform: translateY(-2px);
 }
 
-/* Tablet Layout */
-@media (max-width: 992px) {
-  .promo-bar-header h3 {
-    font-size: 22px;
+/* Tablet Layout (768px and up) */
+@media (min-width: 768px) {
+  .promo-card.featured {
+    flex-direction: row;
+    min-height: 200px;
   }
   
-  .promo-bar-content {
-    padding: 25px;
+  .promo-card.featured img {
+    width: 50%;
+    height: auto;
+  }
+  
+  .promo-card.featured .promo-content {
+    width: 50%;
+    height: auto;
+    padding: 30px;
+    justify-content: center;
   }
 }
 
-/* Mobile Layout */
-@media (max-width: 768px) {
-  .promotions-bar {
-    padding: 40px 15px;
-  }
-  
-  .promo-bar-header h3 {
-    font-size: 20px;
-  }
-  
-  .promo-bar-content {
-    padding: 20px;
-  }
-  
-  .promo-bar-cta {
+/* Mobile Layout (under 768px) */
+@media (max-width: 767px) {
+  .section-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 15px;
   }
   
-  .promo-bar-button {
+  .section-header h2 {
+    font-size: 28px;
+  }
+  
+  .promo-card {
+    min-height: 250px;
+  }
+  
+  .promo-card img {
+    height: 150px;
+  }
+  
+  .promo-content {
+    padding: 15px;
+    height: calc(100% - 150px);
+  }
+  
+  .promo-content h3 {
+    font-size: 18px;
+  }
+  
+  .promo-content p {
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  
+  .promo-content button {
     width: 100%;
-    text-align: center;
   }
 }
 
