@@ -1,95 +1,102 @@
-// Mobile menu toggle
-const menuToggle = document.getElementById('menu-toggle');
-const mobileMenu = document.getElementById('mobile-menu');
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
 
-menuToggle.addEventListener('click', () => {
-  mobileMenu.classList.toggle('show');
-  document.body.classList.toggle('menu-open');
-});
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function() {
+      mobileMenu.classList.toggle('show');
+      document.body.classList.toggle('menu-open');
+    });
+  }
 
-// Dynamic player count animation
-function animatePlayerCounts() {
-  const playerCountElements = document.querySelectorAll('.players-count');
-  
-  playerCountElements.forEach(element => {
-    const min = parseInt(element.dataset.min);
-    const max = parseInt(element.dataset.max);
-    let current = parseInt(element.dataset.current);
-    const numberElement = element.querySelector('.player-number');
+  // Dynamic player count animation
+  function animatePlayerCounts() {
+    const playerCounts = document.querySelectorAll('.players-count');
     
-    // Update the count every 2-5 seconds
-    const updateInterval = Math.random() * 3000 + 2000;
-    
-    const updateCount = () => {
-      // Determine if we should increase or decrease (70% chance to increase)
-      const shouldIncrease = Math.random() < 0.7;
-      let changeAmount;
-      
-      // Small change (1-5) is more likely than big change (5-10)
-      if (Math.random() < 0.7) {
-        changeAmount = Math.floor(Math.random() * 5) + 1;
-      } else {
-        changeAmount = Math.floor(Math.random() * 6) + 5;
-      }
-      
-      // Apply the change
-      if (shouldIncrease) {
-        current = Math.min(max, current + changeAmount);
-      } else {
-        current = Math.max(min, current - changeAmount);
-      }
-      
-      // Animate the number change
-      animateValue(numberElement, parseInt(numberElement.textContent), current, 500);
-      
-      // Update the data attribute
-      element.dataset.current = current;
-      
-      // Schedule next update
-      setTimeout(updateCount, updateInterval);
-    };
-    
-    // Start the updates
-    setTimeout(updateCount, updateInterval);
-  });
-}
-
-// Helper function to animate number changes
-function animateValue(element, start, end, duration) {
-  let startTimestamp = null;
-  const step = (timestamp) => {
-    if (!startTimestamp) startTimestamp = timestamp;
-    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-    element.textContent = Math.floor(progress * (end - start) + start);
-    if (progress < 1) {
-      window.requestAnimationFrame(step);
+    if (!playerCounts.length) {
+      console.warn('No player count elements found');
+      return;
     }
-  };
-  window.requestAnimationFrame(step);
-}
 
-// Password visibility toggle
-document.querySelectorAll('.toggle-password').forEach(toggle => {
-  toggle.addEventListener('click', function() {
-    const input = this.parentElement.querySelector('input');
-    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
-    input.setAttribute('type', type);
-    this.classList.toggle('fa-eye-slash');
+    playerCounts.forEach(function(countElement) {
+      const min = parseInt(countElement.getAttribute('data-min')) || 100;
+      const max = parseInt(countElement.getAttribute('data-max')) || 1000;
+      let current = parseInt(countElement.getAttribute('data-current')) || min;
+      const numberElement = countElement.querySelector('.player-number');
+      
+      if (!numberElement) {
+        console.warn('No .player-number element found in player count');
+        return;
+      }
+
+      // Initial display
+      numberElement.textContent = current;
+
+      // Function to update count
+      function updateCount() {
+        // Random change amount (1-10)
+        const change = Math.floor(Math.random() * 10) + 1;
+        
+        // 70% chance to increase, 30% to decrease
+        if (Math.random() < 0.7) {
+          current = Math.min(max, current + change);
+        } else {
+          current = Math.max(min, current - change);
+        }
+
+        // Animate the change
+        animateValue(numberElement, parseInt(numberElement.textContent), current, 1000);
+        
+        // Schedule next update (2-5 seconds)
+        setTimeout(updateCount, Math.random() * 3000 + 2000);
+      }
+
+      // Start updates
+      setTimeout(updateCount, Math.random() * 3000 + 2000);
+    });
+  }
+
+  // Helper function to animate number changes
+  function animateValue(element, start, end, duration) {
+    const startTime = performance.now();
+    
+    function updateValue(time) {
+      const elapsed = time - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      element.textContent = Math.floor(progress * (end - start) + start);
+      
+      if (progress < 1) {
+        requestAnimationFrame(updateValue);
+      }
+    }
+    
+    requestAnimationFrame(updateValue);
+  }
+
+  // Password visibility toggle
+  document.querySelectorAll('.toggle-password').forEach(function(toggle) {
+    toggle.addEventListener('click', function() {
+      const input = this.parentElement.querySelector('input');
+      if (input) {
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', type);
+        this.classList.toggle('fa-eye-slash');
+      }
+    });
   });
-});
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-  animatePlayerCounts();
-  
   // Close mobile menu when clicking on a link
-  const navLinks = document.querySelectorAll('.nav a');
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('show');
+  document.querySelectorAll('.nav a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      if (mobileMenu) mobileMenu.classList.remove('show');
       document.body.classList.remove('menu-open');
     });
   });
+
+  // Initialize player counts
+  animatePlayerCounts();
 });
 
 
