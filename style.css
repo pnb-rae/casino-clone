@@ -918,7 +918,8 @@ footer {
   color: var(--accent-color); /* Force the color */
   font-size: 30px; /* Ensure proper size */
   display: block; /* Ensure it's visible */
-}
+}   
+
 
 
 
