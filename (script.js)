@@ -1,75 +1,95 @@
-// Password visibility toggle function
-function togglePasswordVisibility(inputId, icon) {
-  const input = document.getElementById(inputId);
-  if (input.type === "password") {
-    input.type = "text";
-    icon.classList.remove("fa-eye");
-    icon.classList.add("fa-eye-slash");
-  } else {
-    input.type = "password";
-    icon.classList.remove("fa-eye-slash");
-    icon.classList.add("fa-eye");
-  }
+// Mobile menu toggle
+const menuToggle = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
+
+menuToggle.addEventListener('click', () => {
+  mobileMenu.classList.toggle('show');
+  document.body.classList.toggle('menu-open');
+});
+
+// Dynamic player count animation
+function animatePlayerCounts() {
+  const playerCountElements = document.querySelectorAll('.players-count');
+  
+  playerCountElements.forEach(element => {
+    const min = parseInt(element.dataset.min);
+    const max = parseInt(element.dataset.max);
+    let current = parseInt(element.dataset.current);
+    const numberElement = element.querySelector('.player-number');
+    
+    // Update the count every 2-5 seconds
+    const updateInterval = Math.random() * 3000 + 2000;
+    
+    const updateCount = () => {
+      // Determine if we should increase or decrease (70% chance to increase)
+      const shouldIncrease = Math.random() < 0.7;
+      let changeAmount;
+      
+      // Small change (1-5) is more likely than big change (5-10)
+      if (Math.random() < 0.7) {
+        changeAmount = Math.floor(Math.random() * 5) + 1;
+      } else {
+        changeAmount = Math.floor(Math.random() * 6) + 5;
+      }
+      
+      // Apply the change
+      if (shouldIncrease) {
+        current = Math.min(max, current + changeAmount);
+      } else {
+        current = Math.max(min, current - changeAmount);
+      }
+      
+      // Animate the number change
+      animateValue(numberElement, parseInt(numberElement.textContent), current, 500);
+      
+      // Update the data attribute
+      element.dataset.current = current;
+      
+      // Schedule next update
+      setTimeout(updateCount, updateInterval);
+    };
+    
+    // Start the updates
+    setTimeout(updateCount, updateInterval);
+  });
 }
 
-// Mobile menu functionality
-document.addEventListener('DOMContentLoaded', function() {
-  const menuToggle = document.getElementById('menu-toggle');
-  const nav = document.querySelector('.nav ul');
-  const body = document.body;
+// Helper function to animate number changes
+function animateValue(element, start, end, duration) {
+  let startTimestamp = null;
+  const step = (timestamp) => {
+    if (!startTimestamp) startTimestamp = timestamp;
+    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+    element.textContent = Math.floor(progress * (end - start) + start);
+    if (progress < 1) {
+      window.requestAnimationFrame(step);
+    }
+  };
+  window.requestAnimationFrame(step);
+}
 
-  // Toggle mobile menu
-  if (menuToggle) {
-    menuToggle.addEventListener('click', function(e) {
-      e.stopPropagation(); 
-      nav.classList.toggle('show');
-      body.classList.toggle('menu-open');
-    });
-  }
+// Password visibility toggle
+document.querySelectorAll('.toggle-password').forEach(toggle => {
+  toggle.addEventListener('click', function() {
+    const input = this.parentElement.querySelector('input');
+    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+    input.setAttribute('type', type);
+    this.classList.toggle('fa-eye-slash');
+  });
+});
 
+// Initialize when DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+  animatePlayerCounts();
+  
   // Close mobile menu when clicking on a link
   const navLinks = document.querySelectorAll('.nav a');
   navLinks.forEach(link => {
-    link.addEventListener('click', function() {
-      if (window.innerWidth <= 992) {
-        nav.classList.remove('show');
-        body.classList.remove('menu-open');
-      }
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('show');
+      document.body.classList.remove('menu-open');
     });
   });
-
-  // Close mobile menu when clicking outside
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.nav') && !e.target.closest('.menu-toggle')) {
-      nav.classList.remove('show');
-      body.classList.remove('menu-open');
-    }
-  });
-
-  // Make sure password fields are clickable
-  const passwordInputs = document.querySelectorAll('input[type="password"]');
-  passwordInputs.forEach(input => {
-    input.style.pointerEvents = 'auto';
-  });
-
-  // === NEW FEATURE: Dynamic live player count ===
-  function updatePlayerCounts() {
-    document.querySelectorAll('.players-count').forEach(el => {
-      const base = parseInt(el.getAttribute('data-base'), 10);
-      const variation = Math.floor(Math.random() * 50) - 25; // Between -25 and +25
-      let newCount = base + variation;
-      if (newCount < 0) newCount = 0;
-      el.querySelector('.player-number').textContent = newCount.toLocaleString();
-    });
-  }
-
-  function loopPlayerUpdate() {
-    updatePlayerCounts();
-    const delay = Math.random() * 3000 + 3000; // 3 to 6 seconds
-    setTimeout(loopPlayerUpdate, delay);
-  }
-
-  loopPlayerUpdate();
 });
 
 
