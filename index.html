@@ -22,34 +22,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <link rel="stylesheet" href="style.css" />
-  
-  <script>
-    // Check if age is verified
-    if(!localStorage.getItem('ageVerified')) {
-      document.addEventListener('DOMContentLoaded', function() {
-        document.body.style.overflow = 'hidden';
-      });
-    }
-    
-    // Set theme from localStorage immediately to prevent flash
-    if(localStorage.getItem('theme') === 'light') {
-      document.documentElement.classList.add('light-mode');
-    }
-  </script>
 </head>
 <body>
-
-  <!-- Age Verification Modal -->
-  <div id="age-verification" class="modal" style="display: none;">
-    <div class="modal-content">
-      <h2><i class="fas fa-exclamation-circle"></i> Age Verification</h2>
-      <p>You must be 18+ years old to enter this website. By entering, you confirm you are of legal age.</p>
-      <div class="modal-buttons">
-        <button id="confirm-age" class="primary-btn">I'm 18+</button>
-        <button id="exit-site" class="secondary-btn">Exit</button>
-      </div>
-    </div>
-  </div>
 
   <header class="header">
     <div class="logo">Classic Casino</div>
@@ -77,16 +51,6 @@
         <li><a href="signup.html" class="signup-btn">Sign Up</a></li>
       </ul>
     </nav>
-    
-    <div class="theme-toggle">
-      <i class="fas fa-moon"></i>
-      <label class="switch">
-        <input type="checkbox" id="theme-toggle">
-        <span class="slider round"></span>
-      </label>
-      <i class="fas fa-sun"></i>
-    </div>
-    
     <div class="menu-toggle" id="menu-toggle">&#9776;</div>
   </header>
 
@@ -144,7 +108,7 @@
       <div class="live-games-grid">
         <div class="live-game-card">
           <div class="live-badge">LIVE</div>
-          <img src="images/live-roulette.jpg" alt="Live Roulette" loading="lazy">
+          <img src="images/live-roulette.jpg" alt="Live Roulette">
           <div class="game-info">
             <h3>Roulette</h3>
             <div class="players-count" data-min="1200" data-max="1500" data-current="1245">
@@ -155,7 +119,7 @@
         </div>
         <div class="live-game-card">
           <div class="live-badge">LIVE</div>
-          <img src="images/live-poker.jpg" alt="Live Blackjack" loading="lazy">
+          <img src="images/live-poker.jpg" alt="Live Blackjack">
           <div class="game-info">
             <h3>Blackjack</h3>
             <div class="players-count" data-min="900" data-max="1200" data-current="987">
@@ -166,7 +130,7 @@
         </div>
         <div class="live-game-card">
           <div class="live-badge">LIVE</div>
-          <img src="images/live-slot.jpg" alt="Live Baccarat" loading="lazy">
+          <img src="images/live-slot.jpg" alt="Live Baccarat">
           <div class="game-info">
             <h3>Baccarat</h3>
             <div class="players-count" data-min="700" data-max="900" data-current="756">
@@ -185,7 +149,7 @@
       </div>
       <div class="promo-grid">
         <div class="promo-card featured">
-          <img src="images/welcome-bonus.jpg" alt="Welcome Bonus" loading="lazy">
+          <img src="images/welcome-bonus.jpg" alt="Welcome Bonus">
           <div class="promo-content">
             <h3>WELCOME BONUS</h3>
             <p>Get 100% bonus up to $1000 + 50 free spins on your first deposit!</p>
@@ -193,7 +157,7 @@
           </div>
         </div>
         <div class="promo-card">
-          <img src="images/free-spins.jpg" alt="Free Spins" loading="lazy">
+          <img src="images/free-spins.jpg" alt="Free Spins">
           <div class="promo-content">
             <h3>WEEKLY FREE SPINS</h3>
             <p>Get 20 free spins every Friday</p>
@@ -201,7 +165,7 @@
           </div>
         </div>
         <div class="promo-card">
-          <img src="images/cashback.jpg" alt="Cashback" loading="lazy">
+          <img src="images/cashback.jpg" alt="Cashback">
           <div class="promo-content">
             <h3>10% CASHBACK</h3>
             <p>Get 10% cashback every Sunday</p>
@@ -249,9 +213,6 @@
           <a href="#"><i class="fab fa-instagram"></i></a>
           <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
-        <div class="security-badge">
-          <i class="fas fa-lock"></i> SSL Secured Connection
-        </div>
       </div>
     </div>
     <div class="copyright">
@@ -265,18 +226,9 @@
     </div>
   </footer>
 
-  <div class="loading-overlay" id="loading-overlay">
-    <div class="loading-spinner">
-      <div class="spinner-border" role="status">
-        <span class="sr-only">Loading...</span>
-      </div>
-      <p>Loading Games...</p>
-    </div>
-  </div>
-
   <script src="script.js"></script>
 </body>
-</html>
+</html>   this is how index html loks like
 
 
 
