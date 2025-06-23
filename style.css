@@ -444,6 +444,7 @@ button, a.primary-btn, a.secondary-btn {
   color: var(--accent-color) !important;
   font-size: 30px !important;
   display: block !important;
+  line-height: 80px;
 }
 
 .category-card h3 {
@@ -615,6 +616,8 @@ button, a.primary-btn, a.secondary-btn {
   display: inline-block;
   min-width: 50px;
   text-align: right;
+  color: var(--accent-color);
+  font-weight: 600;
 }
 
 .game-info button {
@@ -668,6 +671,8 @@ button, a.primary-btn, a.secondary-btn {
   height: 180px;
   object-fit: cover;
   transition: transform 0.3s ease;
+  background: var(--secondary-light);
+  border: 1px solid var(--text-tertiary);
 }
 
 .promo-card:hover img {
@@ -794,68 +799,85 @@ button, a.primary-btn, a.secondary-btn {
 
 /* Dashboard Preview Section */
 .dashboard-preview {
-  padding: 40px;
-  background: flex;
-  justify-content: center;
-  text-align: center;
-}
-
- .dashboard-preview {
-  max-width: 800px;
-  margin: auto 0;
-}
-
- .dashboard-preview img {
-  width: 100%;
-  max-width: auto;
-  height: auto !important;
-  border-radius: 10px;
-  display: block;
-  margin: 15px auto 0;
-}
-
- .dashboard-preview p {
-  margin-bottom: 20px;
-  color: var(--text-secondary);
-  font-size: 16px;
-}
-
- .dashboard-preview {
-  .primary-btn {
-  padding: 25px 10px;
-}
-
-/* Learn More Section */
- .learn-more {
   padding: 80px 20px;
   background: var(--primary-dark);
   text-align: center;
 }
 
- .learn-more-content {
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.dashboard-preview h2 {
+  font-size: 36px;
+  margin-bottom: 40px;
+  color: var(--text-primary);
+  position: relative;
+}
+
+.dashboard-preview h2:after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 3px;
+  background: var(--accent-color);
+  margin: 15px auto 0;
+}
+
+.dashboard-preview img {
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto 20px;
+}
+
+.dashboard-preview p {
+  margin-bottom: 30px;
+  color: var(--text-secondary);
+  font-size: 16px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dashboard-preview .primary-btn {
+  padding: 12px 30px;
+}
+
+/* Learn More Section */
+.learn-more {
+  padding: 80px 20px;
+  background: var(--primary-dark);
+  text-align: center;
+}
+
+.learn-more-content {
   max-width: 800px;
   margin: 0 auto;
 }
 
- .learn-more-content h1 {
+.learn-more-content h1 {
   font-size: 36px;
   margin-bottom: 20px;
   color: var(--accent-color);
 }
 
- .learn-more-content h2 {
+.learn-more-content h2 {
   font-size: 24px;
   margin: 10px 0 30px;
   color: var(--text-primary);
 }
 
- .learn-more-content p {
+.learn-more-content p {
   color: var(--text-secondary);
   margin-bottom: 20px;
   font-size: 16px;
 }
 
- .learn-more-content .primary-btn {
+.learn-more-content .primary-btn {
   margin-top: 20px;
   padding: 30px 12px;
 }
@@ -1204,15 +1226,15 @@ footer {
   }
 
   .dashboard-preview {
-    padding: 40px 15px;
+    padding: 60px 15px;
   }
 
-  .dashboard-container {
-    max-width: 500px;
+  .dashboard-preview h2 {
+    font-size: 28px;
   }
 
   .dashboard-preview img {
-    max-width: 500px auto;
+    max-width: 500px;
   }
 
   .dashboard-preview p {
@@ -1241,10 +1263,6 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .dashboard-container {
-    max-width: 300px;
-  }
-
   .dashboard-preview img {
     max-width: 300px;
   }
@@ -1255,11 +1273,3 @@ button:focus, a:focus, input:focus {
   outline: 2px solid var(--accent-color);
   outline-offset: 2px;
 }
-
-
-
-
-
-
-
-

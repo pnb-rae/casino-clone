@@ -3,37 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Join Classic Casino for premium gaming with exclusive bonuses. Play slots, table games, and live casino!">
-  <meta name="keywords" content="online casino, slots, poker, live casino, bonuses">
   <title>Classic Casino</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Orbitron:wght@700&display=swap">
   <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+  <script src="script.js" defer></script>
 </head>
 <body>
-  <div class="loader">
-    <i class="fas fa-spinner fa-spin"></i>
-  </div>
   <header class="header">
     <a href="index.html" class="logo">Classic Casino</a>
     <nav class="nav">
+      <i class="fas fa-bars menu-toggle" id="menu-toggle"></i>
       <ul id="mobile-menu">
         <li><a href="index.html">Home</a></li>
         <li class="dropdown">
           <a href="#">Games <i class="fas fa-chevron-down"></i></a>
           <div class="dropdown-content">
-            <a href="#"><i class="fas fa-dice"></i> Slots</a>
-            <a href="#"><i class="fas fa-table"></i> Table Games</a>
-            <a href="#"><i class="fas fa-video"></i> Live Casino</a>
-            <a href="#"><i class="fas fa-poker-chip"></i> Poker</a>
+            <a href="#"><i class="fas fa-dice"></i>Slots</a>
+            <a href="#"><i class="fas fa-chess-board"></i>Table Games</a>
+            <a href="#"><i class="fas fa-video"></i>Live Casino</a>
+            <a href="#"><i class="fas fa-poker-chip"></i>Poker</a>
           </div>
         </li>
         <li class="dropdown">
           <a href="#">Promotions <i class="fas fa-chevron-down"></i></a>
           <div class="dropdown-content">
-            <a href="#"><i class="fas fa-gift"></i> Welcome Bonus</a>
-            <a href="#"><i class="fas fa-star"></i> Daily Rewards</a>
-            <a href="#"><i class="fas fa-trophy"></i> Tournaments</a>
+            <a href="#"><i class="fas fa-gift"></i>Welcome Bonus</a>
+            <a href="#"><i class="fas fa-star"></i>Daily Rewards</a>
+            <a href="#"><i class="fas fa-trophy"></i>Tournaments</a>
           </div>
         </li>
         <li><a href="login.html">Login</a></li>
@@ -41,13 +40,10 @@
       </ul>
     </nav>
     <div class="search-bar">
-      <input type="text" placeholder="Search games..." id="game-search" aria-label="Search games">
+      <input type="text" placeholder="Search games..." id="game-search">
       <i class="fas fa-search"></i>
     </div>
-    <button class="theme-toggle" title="Toggle Theme" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
-    <div class="menu-toggle" id="menu-toggle">
-      <i class="fas fa-bars"></i>
-    </div>
+    <button class="theme-toggle"><i class="fas fa-moon"></i></button>
   </header>
 
   <main>
@@ -71,7 +67,7 @@
           <p>200+ exciting slot games</p>
         </div>
         <div class="category-card">
-          <div class="category-icon"><i class="fas fa-table"></i></div>
+          <div class="category-icon"><i class="fas fa-chess-board"></i></div>
           <h3>Table Games</h3>
           <p>Classic casino favorites</p>
         </div>
@@ -96,41 +92,41 @@
       <div class="live-games-grid">
         <div class="live-game-card">
           <div class="live-badge">LIVE</div>
-          <img src="images/roulette.jpg" alt="Roulette">
+          <img src="images/roulette.jpg" alt="Live Roulette">
           <button class="preview-btn">Preview</button>
           <div class="game-info">
             <h3>Roulette</h3>
             <div class="players-count" data-min="1000" data-max="1500" data-current="1245">
-              <i class="fas fa-users"></i><span class="player-number">1245</span> playing
+              <i class="fas fa-users"></i> <span class="player-number">1245</span> playing
             </div>
             <button>Play Now</button>
           </div>
         </div>
         <div class="live-game-card">
           <div class="live-badge">LIVE</div>
-          <img src="images/blackjack.jpg" alt="Blackjack">
+          <img src="images/blackjack.jpg" alt="Live Blackjack">
           <button class="preview-btn">Preview</button>
           <div class="game-info">
             <h3>Blackjack</h3>
             <div class="players-count" data-min="800" data-max="1200" data-current="987">
-              <i class="fas fa-users"></i><span class="player-number">987</span> playing
+              <i class="fas fa-users"></i> <span class="player-number">987</span> playing
             </div>
             <button>Play Now</button>
           </div>
         </div>
         <div class="live-game-card">
           <div class="live-badge">LIVE</div>
-          <img src="images/baccarat.jpg" alt="Baccarat">
+          <img src="images/baccarat.jpg" alt="Live Baccarat">
           <button class="preview-btn">Preview</button>
           <div class="game-info">
             <h3>Baccarat</h3>
             <div class="players-count" data-min="600" data-max="900" data-current="756">
-              <i class="fas fa-users"></i><span class="player-number">756</span> playing
+              <i class="fas fa-users"></i> <span class="player-number">756</span> playing
             </div>
             <button>Play Now</button>
           </div>
         </div>
-      </div>
+    </div>
     </section>
 
     <section class="promotions-section">
@@ -142,7 +138,7 @@
         <div class="swiper-wrapper">
           <div class="swiper-slide">
             <div class="promo-card featured">
-              <img src="images/welcome-bonus.jpg" alt="Welcome Bonus">
+              <img src="images/promo1.jpg" alt="Welcome Bonus Promotion">
               <div class="promo-content">
                 <h3>WELCOME BONUS</h3>
                 <p>Get 100% bonus up to $1000 + 50 free spins on your first deposit!</p>
@@ -153,7 +149,7 @@
           </div>
           <div class="swiper-slide">
             <div class="promo-card">
-              <img src="images/weekly-spins.jpg" alt="Weekly Free Spins">
+              <img src="images/promo2.jpg" alt="Weekly Free Spins Promotion">
               <div class="promo-content">
                 <h3>WEEKLY FREE SPINS</h3>
                 <p>Get 20 free spins every Friday</p>
@@ -164,7 +160,7 @@
           </div>
           <div class="swiper-slide">
             <div class="promo-card">
-              <img src="images/cashback.jpg" alt="Cashback">
+              <img src="images/promo3.jpg" alt="Cashback Promotion">
               <div class="promo-content">
                 <h3>10% CASHBACK</h3>
                 <p>Get 10% cashback every Sunday</p>
@@ -179,12 +175,10 @@
     </section>
 
     <section class="dashboard-preview">
-      <div class="section-header">
+      <div class="dashboard-container">
         <h2>Your Dashboard Awaits</h2>
-      </div>
-      <img src="images/dashboard-preview.jpg" alt="User Dashboard" style="width: 100%; border-radius: 10px;">
-      <p style="text-align: center; margin-top: 20px;">Track your winnings, manage bonuses, and more!</p>
-      <div style="text-align: center;">
+        <img src="images/dashboard.jpg" alt="Dashboard Preview">
+        <p>Track your winnings, manage bonuses, and more!</p>
         <a href="signup.html" class="primary-btn">Sign Up Now</a>
       </div>
     </section>
@@ -231,10 +225,11 @@
       <div class="footer-section">
         <h4>Connect With Us</h4>
         <div class="social-icons">
+          <a href="#"><i class="fab fa-x-twitter"></i></a>
           <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-twitter"></i></a>
           <a href="#"><i class="fab fa-instagram"></i></a>
           <a href="#"><i class="fab fa-youtube"></i></a>
+          <a href="#"><i class="fab fa-telegram"></i></a>
         </div>
       </div>
     </div>
@@ -248,9 +243,6 @@
       </div>
     </div>
   </footer>
-
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
-  <script src="script.js"></script>
 </body>
 </html>
 
