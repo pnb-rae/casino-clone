@@ -1,109 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sign up for Classic Casino to enjoy exclusive bonuses and premium gaming.">
+  <meta name="keywords" content="casino signup, online casino, bonuses">
   <title>Sign Up - Classic Casino</title>
-
-  <!-- Favicon -->
-  <link rel="icon" href="images/favicon.png" type="image/png" />
-
-  <!-- Metadata -->
-  <meta name="description" content="Create a Classic Casino account to enjoy online casino games and exclusive promotions.">
-  <meta name="keywords" content="sign up, create account, Classic Casino registration, online casino sign up">
-  <meta name="author" content="Classic Casino Team">
-
-  <!-- Google Fonts: Poppins + Orbitron -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
-  <!-- Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+  <div class="loader">
+    <i class="fas fa-spinner fa-spin"></i>
+  </div>
   <header class="header">
-    <div class="logo">Classic Casino</div>
+    <a href="index.html" class="logo">Classic Casino</a>
     <nav class="nav">
-      <ul>
+      <ul id="mobile-menu">
         <li><a href="index.html">Home</a></li>
         <li><a href="#">Games</a></li>
         <li><a href="#">Promotions</a></li>
-        <li><a href="login.html">Login</a></li>
+        <li><a href="signup.html" class="signup-btn">Sign Up</a></li>
       </ul>
     </nav>
+    <div class="search-bar">
+      <input type="text" placeholder="Search games..." id="game-search" aria-label="Search games">
+      <i class="fas fa-search"></i>
+    </div>
+    <button class="theme-toggle" title="Toggle Theme" aria-label="Toggle theme"><i class="fas fa-moon"></i></button>
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
   </header>
 
   <main class="auth-main">
     <section class="auth-section">
       <div class="auth-container">
         <div class="auth-header">
-          <h2><i class="fas fa-user-plus" style="margin-right: 10px;"></i>Create Your Account</h2>
-          <p><i class="fas fa-gift" style="margin-right: 8px;"></i>Join now to start playing with exclusive bonuses!</p>
+          <h2>Create Your Account</h2>
+          <p>Join now to start playing with exclusive bonuses!</p>
         </div>
-        
-        <form class="auth-form">
+        <form id="signup-form" class="auth-form" aria-label="Signup form">
           <div class="form-group">
-            <label for="fullname"><i class="fas fa-id-card" style="margin-right: 8px;"></i>Full Name</label>
+            <label for="name">Full Name</label>
             <div class="input-with-icon">
-              <i class="fas fa-user"></i>
-              <input type="text" id="fullname" placeholder="Enter your full name" required />
+              <i class="fas fa-user" aria-hidden="true"></i>
+              <input type="text" id="name" name="name" placeholder="Enter your full name" required aria-required="true">
             </div>
           </div>
-          
           <div class="form-group">
-            <label for="email"><i class="fas fa-envelope" style="margin-right: 8px;"></i>Email</label>
+            <label for="email">Email</label>
             <div class="input-with-icon">
-              <i class="fas fa-envelope"></i>
-              <input type="email" id="email" placeholder="Enter your email" required />
+              <i class="fas fa-envelope" aria-hidden="true"></i>
+              <input type="email" id="email" name="email" placeholder="Enter your email" required aria-required="true">
             </div>
           </div>
-          
           <div class="form-group">
-            <label for="password"><i class="fas fa-key" style="margin-right: 8px;"></i>Password</label>
+            <label for="password">Password</label>
             <div class="input-with-icon">
-              <i class="fas fa-lock"></i>
-              <input type="password" id="password" placeholder="Create a password" required />
+              <i class="fas fa-lock" aria-hidden="true"></i>
+              <input type="password" id="password" name="password" placeholder="Enter your password" required aria-required="true">
               <i class="fas fa-eye toggle-password"></i>
             </div>
-            <div class="password-hint">
-              <p><i class="fas fa-info-circle" style="margin-right: 5px;"></i>Password must be at least 8 characters</p>
-            </div>
+            <p class="password-hint">Password must be at least 8 characters</p>
           </div>
-          
           <div class="form-group">
-            <label for="confirm-password"><i class="fas fa-key" style="margin-right: 8px;"></i>Confirm Password</label>
+            <label for="confirm-password">Confirm Password</label>
             <div class="input-with-icon">
-              <i class="fas fa-lock"></i>
-              <input type="password" id="confirm-password" placeholder="Confirm your password" required />
+              <i class="fas fa-lock" aria-hidden="true"></i>
+              <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required aria-required="true">
+              <i class="fas fa-eye toggle-password"></i>
             </div>
           </div>
-          
           <div class="form-checkbox">
-            <input type="checkbox" id="terms" required>
-            <label for="terms"><i class="fas fa-file-contract" style="margin-right: 8px;"></i>I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></label>
+            <input type="checkbox" id="terms" name="terms" required aria-required="true">
+            <label for="terms">I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a></label>
           </div>
-          
           <div class="form-checkbox">
-            <input type="checkbox" id="promotions">
-            <label for="promotions"><i class="fas fa-bullhorn" style="margin-right: 8px;"></i>I want to receive promotions and bonuses</label>
+            <input type="checkbox" id="promotions" name="promotions">
+            <label for="promotions">I want to receive promotions and bonuses</label>
           </div>
-          
-          <button type="submit" class="auth-btn"><i class="fas fa-user-plus" style="margin-right: 8px;"></i>Sign Up</button>
-          
+          <button type="submit" class="auth-btn">Sign Up</button>
           <div class="auth-footer">
-            <p>Already have an account? <a href="login.html"><i class="fas fa-sign-in-alt" style="margin-right: 5px;"></i>Login</a></p>
+            <p>Already have an account? <a href="login.html">Login</a></p>
           </div>
         </form>
       </div>
     </section>
   </main>
 
+  <div class="chat-widget">
+    <i class="fas fa-comment-dots"></i>
+  </div>
+
   <footer>
-    &copy; 2025 Classic Casino. All rights reserved.
+    <div class="footer-content">
+      <div class="footer-section">
+        <h4>About Us</h4>
+        <ul>
+          <li><a href="#">About Classic Casino</a></li>
+          <li><a href="#">Responsible Gaming</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Games</h4>
+        <ul>
+          <li><a href="#">Slots</a></li>
+          <li><a href="#">Table Games</a></li>
+          <li><a href="#">Live Casino</a></li>
+          <li><a href="#">Poker</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Payment Methods</a></li>
+          <li><a href="#">Game Rules</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h4>Connect With Us</h4>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="copyright">
+      <p>© 2025 Classic Casino. All rights reserved.</p>
+      <div class="payment-methods">
+        <i class="fab fa-cc-visa"></i>
+        <i class="fab fa-cc-mastercard"></i>
+        <i class="fab fa-cc-paypal"></i>
+        <i class="fab fa-bitcoin"></i>
+      </div>
+    </div>
   </footer>
 
   <script src="script.js"></script>

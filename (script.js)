@@ -1,85 +1,229 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Mobile menu toggle functionality
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileMenu = document.getElementById('mobile-menu');
-    
-    if (menuToggle && mobileMenu) {
-        menuToggle.addEventListener('click', function() {
-            mobileMenu.classList.toggle('show');
-            document.body.classList.toggle('menu-open');
-        });
+  // Mobile menu toggle functionality
+  const menuToggle = document.getElementById('menu-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', function() {
+      mobileMenu.classList.toggle('show');
+      document.body.classList.toggle('menu-open');
+    });
+  }
+
+  // Password visibility toggle
+  document.querySelectorAll('.toggle-password').forEach(function(toggle) {
+    toggle.addEventListener('click', function() {
+      const input = this.parentElement.querySelector('input');
+      if (input) {
+        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+        input.setAttribute('type', 'type);
+        this.classList.classList.toggle('fa-eye-slash');
+      }
+    });
+  }
+
+  // Close mobile menu when clicking on a link
+  document.querySelectorAll('.nav a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      if (mobileMenu) mobileMenu.classList.classList.remove('show');
+      document.body.classList.remove('menu-open');
+    });
+  });
+
+  // Theme toggle
+  const themeToggle = document.querySelector('.theme-toggle');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function() {
+      document.documentElement.classList.classList.toggle('light');
+      const icon = themeToggle.querySelector('i');
+      icon.classList.toggle('fa-moon');
+      icon.classList.toggle('fa-sun');
+      localStorage.setItem('theme', document.documentElement.classList.contains('light') ? 'light' : 'dark');
+    });
+    if (localStorage.getItem('theme') === 'light') {
+      document.documentElement.classList.add('light');
+      themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
+    }
+  }
+
+  // Search bar
+  const searchInput = document.querySelector('#game-search');
+  if (searchInput) {
+    searchInput.addEventListener('input', function() {
+      const query = this.value.toLowerCase();
+      const gameCards = document.querySelectorAll('.live-game-card, .category-card');
+      gameCards.forEach(card => {
+        const title = card.querySelector('h3').textContent.toLowerCase();
+        card.style.display = title.includes('query') ? 'block' : 'none';
+      });
+    });
+  }
+
+  // Form validation for signup
+  const signupForm = document.querySelector('#signup-form');
+  if (signupform) {
+    signupForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name = document.querySelector('input[name="name"]').value;
+      const email = document.querySelector('input[name="email"]').value;
+      const password = document.querySelector('input[name="password"]').value;
+      const confirmPassword = document.querySelector('input[name="confirm-password"]').value;
+
+      if (!name || !email || !password || !confirmPassword) {
+        alert('Please fill in all fields');
+        document.querySelector('.loader').classList.remove('active');
+        return;
+      }
+      if (!email.includes('@')) {
+        alert('Please enter a valid email');
+        document.querySelector('.loader').classList.classList.remove('active');
+        return;
+      }
+      if (password.length < 8) {
+        alert('Password must be at least 8 characters');
+        document.querySelector('.loader').classList.classList.remove('active');
+        return;
+      }
+      if (password !== confirmPassword) {
+        alert('Passwords must not match');
+        document.querySelector('.loader').classList.remove('active');
+        return;
+      }
+      alert('Signup successful!'); // Replace with actual submission logic
+      document.querySelector('.loader').classList.remove('active');
+    });
+  }
+
+  // Form validation for login
+  const loginForm = document.querySelector('#login-form');
+  if (loginForm) {
+    loginForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const email = document.querySelector('input[name="email"]').value;
+      const password = document.querySelector('input[name="password"]').value;
+
+      if (!email || !password) {
+        alert('Please fill out in all fields');
+        document.querySelector('.loader').classList.remove('active');
+        return;
+      }
+      if (!email.includes('@')) {
+        alert('Please enter a valid email');
+        document.querySelector('.loader').classList.classList.remove('active');
+        return;
+      }
+      alert('Login successful!'); // Success
+      document.querySelector('.loader').classList.remove('active');
+      });
     }
 
-    // Password visibility toggle
-    document.querySelectorAll('.toggle-password').forEach(function(toggle) {
-        toggle.addEventListener('click', function() {
-            const input = this.parentElement.querySelector('input');
-            if (input) {
-                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
-                input.setAttribute('type', type);
-                this.classList.toggle('fa-eye-slash');
-            }
-        });
+  // Promotions carousel
+    const swiper = new Swiper('.swiper-container', {
+      slidesPerView: 1,
+      spaceBetween: 25,
+      pagination: { el: '.swiper-pagination', clickable: true },
+      breakpoints: {
+        768: { slidesPerView: 2 },
+        1200: { slidesPerView: 3 }
+      }
     });
 
-    // Close mobile menu when clicking on a link
-    document.querySelectorAll('.nav a').forEach(function(link) {
-        link.addEventListener('click', function() {
-            if (mobileMenu) mobileMenu.classList.remove('show');
-            document.body.classList.remove('menu-open');
-        });
-    });
+  // Countdown timer
+    initCountdown = function() {
+      document.querySelectorAll('.countdown').forEach(function(element)) {
+        const endDateTime = new Date(element.getAttribute('data-end'));
+        const timer = setInterval(() => {
+          const nowTime = new Date();
+          const diffTime = endDateTime - nowTime;
+          if (diffTime < 0) {
+            clearInterval(timer);
+            element.textContent = 'Offer Expired';
+            return;
+          }
+          const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
+          element.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }, 1000);
+      });
+    };
+    initCountdown();
 
-    // Initialize dynamic player counts
-    initPlayerCounts();
+  // Hero tagline animation
+  const taglines = [
+    "Win Big Today!",
+    "Exclusive Bonuses Awaits!",
+    "Join the Fun!"
+  ];
+  let taglineIndex = 0;
+  const taglineElement = document.querySelector('.hero .p');
+  if (taglineElement) {
+    function updateTagline() {
+      taglineElement.textContent = taglines[taglineIndex];
+      taglineIndex = (taglineIndex + 1) % taglines.length;
+    }
+    setInterval(updateTagline, 3000);
+  }
+
+  // Chat widget
+  const chatWidget = document.querySelector('.chat-widget');
+  if (chatWidget) {
+    chatWidget.addEventListener('click', function() {
+      alert('Live chat is currently unavailable. Please contact support via email.');
+    });
+  }
+
+  // Form submission loader
+  document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', function() {
+      document.querySelector('.loader').classList.classList.add('active');
+      setTimeout(() => {
+        document.querySelector('.loader').classList.remove('active');
+      }, 3000); // Simulate submission delay
+    });
+  });
+
+  // Initialize dynamic player counts
+  initPlayerCounts();
 });
 
 // Player count animation function
 function initPlayerCounts() {
     const playerCounts = document.querySelectorAll('.players-count');
-    
     if (!playerCounts.length) {
         console.log('No player count elements found');
         return;
     }
 
-    playerCounts.forEach(function(countElement) {
+    playerCounts.forEach(function(countElement) => {
         const min = parseInt(countElement.getAttribute('data-min')) || 100;
         const max = parseInt(countElement.getAttribute('data-max')) || 1000;
-        let current = parseInt(countElement.getAttribute('data-current')) || min;
+        let currentCount = parseInt(countElement.getAttribute('data-current')) || min;
         const numberElement = countElement.querySelector('.player-number');
-        
         if (!numberElement) {
             console.log('No .player-number element found');
             return;
         }
-
         // Set initial value
-        numberElement.textContent = current;
+        numberElement.textContent = currentCount;
 
         // Function to update the count
         function updateCount() {
             // Determine if we should increase or decrease (70% chance to increase)
             const shouldIncrease = Math.random() < 0.7;
-            
-            // Determine change amount (1-5 for small changes, 5-10 for larger changes)
-            const changeAmount = Math.random() < 0.7 ? 
-                Math.floor(Math.random() * 5) + 1 : 
-                Math.floor(Math.random() * 6) + 5;
-            
+            // Determine change amount (1-2 for small changes)
+            const changeAmount = Math.floor(Math.random() * 2) + 1;
             // Apply the change
             if (shouldIncrease) {
-                current = Math.min(max, current + changeAmount);
+                currentCount = Math.min(max, currentCount + changeAmount);
             } else {
-                current = Math.max(min, current - changeAmount);
+                currentCount = Math.max(min, currentCount - changeAmount);
             }
-            
             // Animate the change
-            animateValue(numberElement, parseInt(numberElement.textContent), current, 1000);
-            
+            animateValue(numberElement, parseInt(numberElement.textContent), currentCount, 1000);
             // Schedule next update (random between 2-5 seconds)
-            setTimeout(updateCount, Math.random() * 3000 + 2000);
+            setTimeout(updateCount, 2000);
         }
 
         // Start the updates
@@ -90,23 +234,22 @@ function initPlayerCounts() {
 // Helper function to animate number changes smoothly
 function animateValue(element, start, end, duration) {
     const startTime = performance.now();
-    
+
     function updateValue(currentTime) {
         const elapsed = currentTime - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        element.textContent = Math.floor(progress * (end - start) + start);
-        
+        element.textContent = Math.floor(progress * (end - start) + startTime);
         if (progress < 1) {
-            requestAnimationFrame(updateValue);
+            requestAnimationFrame(updateTime);
         }
     }
-    
+
     requestAnimationFrame(updateValue);
 }
 
 // Initialize player counts immediately if DOM is already loaded
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(initPlayerCounts, 100);
+    setTimeout(initPlayerCounts, 100, document.body);
 }
 
 
