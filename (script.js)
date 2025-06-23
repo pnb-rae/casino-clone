@@ -1,256 +1,146 @@
-// Wait for the DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-  // Mobile menu toggle functionality
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  if (menuToggle && mobileMenu) {
-    menuToggle.addEventListener('click', function() {
-      mobileMenu.classList.toggle('show');
-      document.body.classList.toggle('menu-open');
-    });
-  }
+// Mobile Menu Toggle
+const menuToggle = document.getElementById('menu-toggle');
+const mobileMenu = document.getElementById('mobile-menu');
 
-  // Password visibility toggle
-  document.querySelectorAll('.toggle-password').forEach(function(toggle) {
-    toggle.addEventListener('click', function() {
-      const input = this.parentElement.querySelector('input');
-      if (input) {
-        const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
-        input.setAttribute('type', 'type);
-        this.classList.classList.toggle('fa-eye-slash');
-      }
-    });
-  }
-
-  // Close mobile menu when clicking on a link
-  document.querySelectorAll('.nav a').forEach(function(link) {
-    link.addEventListener('click', function() {
-      if (mobileMenu) mobileMenu.classList.classList.remove('show');
-      document.body.classList.remove('menu-open');
-    });
-  });
-
-  // Theme toggle
-  const themeToggle = document.querySelector('.theme-toggle');
-  if (themeToggle) {
-    themeToggle.addEventListener('click', function() {
-      document.documentElement.classList.classList.toggle('light');
-      const icon = themeToggle.querySelector('i');
-      icon.classList.toggle('fa-moon');
-      icon.classList.toggle('fa-sun');
-      localStorage.setItem('theme', document.documentElement.classList.contains('light') ? 'light' : 'dark');
-    });
-    if (localStorage.getItem('theme') === 'light') {
-      document.documentElement.classList.add('light');
-      themeToggle.querySelector('i').classList.replace('fa-moon', 'fa-sun');
-    }
-  }
-
-  // Search bar
-  const searchInput = document.querySelector('#game-search');
-  if (searchInput) {
-    searchInput.addEventListener('input', function() {
-      const query = this.value.toLowerCase();
-      const gameCards = document.querySelectorAll('.live-game-card, .category-card');
-      gameCards.forEach(card => {
-        const title = card.querySelector('h3').textContent.toLowerCase();
-        card.style.display = title.includes('query') ? 'block' : 'none';
-      });
-    });
-  }
-
-  // Form validation for signup
-  const signupForm = document.querySelector('#signup-form');
-  if (signupform) {
-    signupForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name = document.querySelector('input[name="name"]').value;
-      const email = document.querySelector('input[name="email"]').value;
-      const password = document.querySelector('input[name="password"]').value;
-      const confirmPassword = document.querySelector('input[name="confirm-password"]').value;
-
-      if (!name || !email || !password || !confirmPassword) {
-        alert('Please fill in all fields');
-        document.querySelector('.loader').classList.remove('active');
-        return;
-      }
-      if (!email.includes('@')) {
-        alert('Please enter a valid email');
-        document.querySelector('.loader').classList.classList.remove('active');
-        return;
-      }
-      if (password.length < 8) {
-        alert('Password must be at least 8 characters');
-        document.querySelector('.loader').classList.classList.remove('active');
-        return;
-      }
-      if (password !== confirmPassword) {
-        alert('Passwords must not match');
-        document.querySelector('.loader').classList.remove('active');
-        return;
-      }
-      alert('Signup successful!'); // Replace with actual submission logic
-      document.querySelector('.loader').classList.remove('active');
-    });
-  }
-
-  // Form validation for login
-  const loginForm = document.querySelector('#login-form');
-  if (loginForm) {
-    loginForm.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const email = document.querySelector('input[name="email"]').value;
-      const password = document.querySelector('input[name="password"]').value;
-
-      if (!email || !password) {
-        alert('Please fill out in all fields');
-        document.querySelector('.loader').classList.remove('active');
-        return;
-      }
-      if (!email.includes('@')) {
-        alert('Please enter a valid email');
-        document.querySelector('.loader').classList.classList.remove('active');
-        return;
-      }
-      alert('Login successful!'); // Success
-      document.querySelector('.loader').classList.remove('active');
-      });
-    }
-
-  // Promotions carousel
-    const swiper = new Swiper('.swiper-container', {
-      slidesPerView: 1,
-      spaceBetween: 25,
-      pagination: { el: '.swiper-pagination', clickable: true },
-      breakpoints: {
-        768: { slidesPerView: 2 },
-        1200: { slidesPerView: 3 }
-      }
-    });
-
-  // Countdown timer
-    initCountdown = function() {
-      document.querySelectorAll('.countdown').forEach(function(element)) {
-        const endDateTime = new Date(element.getAttribute('data-end'));
-        const timer = setInterval(() => {
-          const nowTime = new Date();
-          const diffTime = endDateTime - nowTime;
-          if (diffTime < 0) {
-            clearInterval(timer);
-            element.textContent = 'Offer Expired';
-            return;
-          }
-          const days = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((diffTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((diffTime % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((diffTime % (1000 * 60)) / 1000);
-          element.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-        }, 1000);
-      });
-    };
-    initCountdown();
-
-  // Hero tagline animation
-  const taglines = [
-    "Win Big Today!",
-    "Exclusive Bonuses Awaits!",
-    "Join the Fun!"
-  ];
-  let taglineIndex = 0;
-  const taglineElement = document.querySelector('.hero .p');
-  if (taglineElement) {
-    function updateTagline() {
-      taglineElement.textContent = taglines[taglineIndex];
-      taglineIndex = (taglineIndex + 1) % taglines.length;
-    }
-    setInterval(updateTagline, 3000);
-  }
-
-  // Chat widget
-  const chatWidget = document.querySelector('.chat-widget');
-  if (chatWidget) {
-    chatWidget.addEventListener('click', function() {
-      alert('Live chat is currently unavailable. Please contact support via email.');
-    });
-  }
-
-  // Form submission loader
-  document.querySelectorAll('form').forEach(form => {
-    form.addEventListener('submit', function() {
-      document.querySelector('.loader').classList.classList.add('active');
-      setTimeout(() => {
-        document.querySelector('.loader').classList.remove('active');
-      }, 3000); // Simulate submission delay
-    });
-  });
-
-  // Initialize dynamic player counts
-  initPlayerCounts();
+menuToggle.addEventListener('click', () => {
+  mobileMenu.classList.toggle('show');
+  document.body.classList.toggle('menu-open');
 });
 
-// Player count animation function
-function initPlayerCounts() {
-    const playerCounts = document.querySelectorAll('.players-count');
-    if (!playerCounts.length) {
-        console.log('No player count elements found');
-        return;
+// Theme Toggle
+const themeToggle = document.querySelector('.theme-toggle');
+const themeIcon = themeToggle.querySelector('i');
+themeToggle.addEventListener('click', () => {
+  document.documentElement.classList.toggle('light');
+  localStorage.setItem('theme', document.documentElement.classList.contains('light') ? 'light' : 'dark');
+  themeIcon.classList.toggle('fa-moon');
+  themeIcon.classList.toggle('fa-sun');
+});
+
+// Load Theme from Local Storage
+if (localStorage.getItem('theme') === 'light') {
+  document.documentElement.classList.add('light');
+  themeIcon.classList.remove('fa-moon');
+  themeIcon.classList.add('fa-sun');
+}
+
+// Initialize Swiper
+const swiper = new Swiper('.swiper-container', {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  breakpoints: {
+    768: {
+      slidesPerView: 2,
+    },
+    1024: {
+      slidesPerView: 3,
+    },
+  },
+});
+
+// Live Players Count Animation
+function animatePlayerCount(element) {
+  const min = parseInt(element.dataset.min);
+  const max = parseInt(element.dataset.max);
+  let current = parseInt(element.dataset.current);
+  const playerNumber = element.querySelector('.player-number');
+
+  function updateCount() {
+    const change = Math.floor(Math.random() * 20) - 10; // Random change between -10 and +10
+    current = Math.max(min, Math.min(max, current + change));
+    playerNumber.textContent = current;
+    element.dataset.current = current;
+  }
+
+  // Initial update
+  updateCount();
+  // Update every 2 seconds
+  setInterval(updateCount, 2000);
+}
+
+document.querySelectorAll('.players-count').forEach(animatePlayerCount);
+
+// Game Search Functionality
+const gameSearch = document.getElementById('game-search');
+gameSearch.addEventListener('input', (e) => {
+  const query = e.target.value.toLowerCase();
+  const gameCards = document.querySelectorAll('.live-game-card');
+  gameCards.forEach(card => {
+    const title = card.querySelector('h3').textContent.toLowerCase();
+    card.style.display = title.includes(query) ? 'block' : 'none';
+  });
+});
+
+// Countdown Timer for Promotions
+function startCountdown(element) {
+  const endDate = new Date(element.dataset.end).getTime();
+  const updateCountdown = () => {
+    const now = new Date().getTime();
+    const distance = endDate - now;
+    if (distance < 0) {
+      element.textContent = 'Offer Expired';
+      return;
     }
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    element.textContent = `${days}d ${hours}h ${minutes}m`;
+  };
+  updateCountdown();
+  setInterval(updateCountdown, 60000);
+}
 
-    playerCounts.forEach(function(countElement) => {
-        const min = parseInt(countElement.getAttribute('data-min')) || 100;
-        const max = parseInt(countElement.getAttribute('data-max')) || 1000;
-        let currentCount = parseInt(countElement.getAttribute('data-current')) || min;
-        const numberElement = countElement.querySelector('.player-number');
-        if (!numberElement) {
-            console.log('No .player-number element found');
-            return;
-        }
-        // Set initial value
-        numberElement.textContent = currentCount;
+document.querySelectorAll('.countdown').forEach(startCountdown);
 
-        // Function to update the count
-        function updateCount() {
-            // Determine if we should increase or decrease (70% chance to increase)
-            const shouldIncrease = Math.random() < 0.7;
-            // Determine change amount (1-2 for small changes)
-            const changeAmount = Math.floor(Math.random() * 2) + 1;
-            // Apply the change
-            if (shouldIncrease) {
-                currentCount = Math.min(max, currentCount + changeAmount);
-            } else {
-                currentCount = Math.max(min, currentCount - changeAmount);
-            }
-            // Animate the change
-            animateValue(numberElement, parseInt(numberElement.textContent), currentCount, 1000);
-            // Schedule next update (random between 2-5 seconds)
-            setTimeout(updateCount, 2000);
-        }
+// Form Submission with Loader
+function handleFormSubmission(form) {
+  if (!form) return;
+  const loader = document.querySelector('.loader');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    loader.classList.add('active');
+    setTimeout(() => {
+      loader.classList.remove('active');
+      alert('Form submitted successfully!'); // Replace with actual submission logic
+    }, 2000);
+  });
+}
 
-        // Start the updates
-        setTimeout(updateCount, Math.random() * 3000 + 2000);
+document.querySelectorAll('#signup-form, #login-form').forEach(handleFormSubmission);
+
+// Password Toggle
+function togglePasswordVisibility(toggleId, inputId) {
+  const toggle = document.getElementById(toggleId);
+  const input = document.getElementById(inputId);
+  if (toggle && input) {
+    toggle.addEventListener('click', () => {
+      const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+      input.setAttribute('type', type);
+      toggle.classList.toggle('fa-eye');
+      toggle.classList.toggle('fa-eye-slash');
     });
+  }
 }
 
-// Helper function to animate number changes smoothly
-function animateValue(element, start, end, duration) {
-    const startTime = performance.now();
+togglePasswordVisibility('toggle-signup-password', 'password');
+togglePasswordVisibility('toggle-login-password', 'password');
 
-    function updateValue(currentTime) {
-        const elapsed = currentTime - startTime;
-        const progress = Math.min(elapsed / duration, 1);
-        element.textContent = Math.floor(progress * (end - start) + startTime);
-        if (progress < 1) {
-            requestAnimationFrame(updateTime);
-        }
-    }
+// Chat Widget Toggle (Placeholder)
+const chatWidget = document.querySelector('.chat-widget');
+chatWidget.addEventListener('click', () => {
+  alert('Live chat coming soon!');
+});
 
-    requestAnimationFrame(updateValue);
-}
-
-// Initialize player counts immediately if DOM is already loaded
-if (document.readyState === 'complete' || document.readyState === 'interactive') {
-    setTimeout(initPlayerCounts, 100, document.body);
-}
+// Preview Button Functionality
+document.querySelectorAll('.preview-btn').forEach(button => {
+  button.addEventListener('click', () => {
+    alert('Game preview coming soon!');
+  });
+});
 
 
 
