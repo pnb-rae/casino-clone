@@ -49,6 +49,11 @@ function animatePlayerCount(element) {
   let current = parseInt(element.dataset.current);
   const playerNumber = element.querySelector('.player-number');
 
+  if (!playerNumber) {
+    console.error('Player number element not found in:', element);
+    return;
+  }
+
   function updateCount() {
     const change = Math.floor(Math.random() * 20) - 10;
     current = Math.max(min, Math.min(max, current + change));
@@ -56,8 +61,8 @@ function animatePlayerCount(element) {
     element.dataset.current = current;
   }
 
-  updateCount();
-  setInterval(updateCount, 2000);
+  updateCount(); // Initial update
+  setInterval(updateCount, 2000); // Update every 2 seconds
 }
 
 document.querySelectorAll('.players-count').forEach(animatePlayerCount);
