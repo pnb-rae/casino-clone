@@ -50,30 +50,40 @@ function animatePlayerCount(element) {
   const playerNumber = element.querySelector('.player-number');
 
   function updateCount() {
-    const change = Math.floor(Math.random() * 20) - 10; // Random change between -10 and +10
+    const change = Math.floor(Math.random() * 20) - 10;
     current = Math.max(min, Math.min(max, current + change));
     playerNumber.textContent = current;
     element.dataset.current = current;
   }
 
-  // Initial update
   updateCount();
-  // Update every 2 seconds
   setInterval(updateCount, 2000);
 }
 
 document.querySelectorAll('.players-count').forEach(animatePlayerCount);
 
-// Game Search Functionality
+// Game Search Functionality with Debounce
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+
 const gameSearch = document.getElementById('game-search');
-gameSearch.addEventListener('input', (e) => {
+gameSearch.addEventListener('input', debounce((e) => {
   const query = e.target.value.toLowerCase();
   const gameCards = document.querySelectorAll('.live-game-card');
   gameCards.forEach(card => {
     const title = card.querySelector('h3').textContent.toLowerCase();
     card.style.display = title.includes(query) ? 'block' : 'none';
   });
-});
+}, 300));
 
 // Countdown Timer for Promotions
 function startCountdown(element) {
@@ -105,7 +115,7 @@ function handleFormSubmission(form) {
     loader.classList.add('active');
     setTimeout(() => {
       loader.classList.remove('active');
-      alert('Form submitted successfully!'); // Replace with actual submission logic
+      alert('Form submitted successfully!');
     }, 2000);
   });
 }
