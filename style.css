@@ -900,7 +900,7 @@ button, a.primary-btn, a.secondary-btn {
   background: var(--secondary-dark);
   border-radius: 10px;
   padding: 40px;
-  box-shadow: 15px 0px 5px rgba(0, 0,0.3);
+  box-shadow: 15px 0px 5px rgba(0, 0, 0, 0.3);
 }
 
 .auth-header {
@@ -1130,14 +1130,14 @@ footer {
 
 .footer-section h4 {
   font-size: 18px;
-  color: inherit;
+  color: var(--text-secondary);
   margin-bottom: 20px;
-  position: absolute;
+  position: relative;
   padding-bottom: 10px;
 }
 
-.footer-section h4 {
-  content: after;
+.footer-section h4:after {
+  content: '';
   position: absolute;
   left: 0;
   bottom: 0;
@@ -1161,7 +1161,8 @@ footer {
 }
 
 .footer-section a:hover {
-  background: var(--accent-color);
+  color: var(--accent-color);
+  background: rgba(255, 204, 0, 0.2); /* Changed from solid var(--accent-color) to semi-transparent */
 }
 
 .social-icons {

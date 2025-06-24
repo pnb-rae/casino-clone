@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     updateCount();
-    setInterval(updateCount, 3000);
+    setInterval(updateCount, 1000); // Changed from 3000ms to 1000ms for rapid changes
   }
 
   document.querySelectorAll('.players-count').forEach(animatePlayerCount);
