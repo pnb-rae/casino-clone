@@ -8,8 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
       mobileMenu.classList.toggle('show');
       document.body.classList.toggle('menu-open');
     });
-    }
-  });
+  }
 
   // Theme toggle
   const themeToggle = document.querySelector('.theme-toggle');
@@ -59,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     updateCount();
-    setInterval(updateCount, 1000); // Changed from 3000ms to 1000ms for rapid changes
+    setInterval(updateCount, 1000); // Rapid changes
   }
 
   document.querySelectorAll('.players-count').forEach(animatePlayerCount);
@@ -180,7 +179,8 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   togglePasswordVisibility('toggle-signup-password', 'password');
-  togglePasswordVisibility('toggle-login-password', 'password');
+  // Note: toggle-login-password is commented out as login-form isn't present yet
+  // togglePasswordVisibility('toggle-login-password', 'password');
 
   // Chat widget
   const chatWidget = document.querySelector('.chat-widget');
@@ -213,3 +213,4 @@ document.addEventListener('DOMContentLoaded', function() {
     changeTagline();
     setInterval(changeTagline, 5000);
   }
+});
