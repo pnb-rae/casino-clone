@@ -186,7 +186,7 @@ button, a.primary-btn, a.secondary-btn {
   z-index: 101;
   position: absolute;
   top: 15px;
-  right: 60px; /* Adjusted to create space */
+  right: 15px; /* Moved to top-right corner */
 }
 
 .theme-toggle {
@@ -197,7 +197,31 @@ button, a.primary-btn, a.secondary-btn {
   cursor: pointer;
   position: absolute;
   top: 15px;
-  right: 15px; /* Separated from menu toggle */
+  right: 50px; /* Positioned next to menu toggle */
+}
+
+/* Search Bar */
+.search-bar {
+  position: relative;
+  margin-left: 20px;
+  margin-right: 120px; /* Added margin to prevent overlap with toggles */
+}
+
+.search-bar input {
+  padding: 8px 30px 8px 15px;
+  border-radius: 5px;
+  border: 1px solid #444;
+  background: var(--secondary-light);
+  color: var(--text-primary);
+  width: 200px; /* Fixed width to avoid stretching */
+}
+
+.search-bar i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-secondary);
 }
 
 @media (max-width: 992px) {
@@ -243,15 +267,18 @@ button, a.primary-btn, a.secondary-btn {
   }
 
   .theme-toggle {
-    display: block; /* Ensure theme toggle remains visible */
+    display: block;
+  }
+
+  .search-bar {
+    margin-right: 0; /* Reset margin on mobile */
+    margin-left: 0;
+    width: 100%;
+    max-width: 200px;
   }
 
   body.menu-open {
     overflow: hidden;
-  }
-
-  .search-bar {
-    margin-right: 50px;
   }
 }
 
@@ -269,34 +296,18 @@ button, a.primary-btn, a.secondary-btn {
   }
 
   .menu-toggle {
-    right: 60px;
+    right: 15px;
   }
 
   .theme-toggle {
-    right: 15px;
+    right: 50px;
   }
-}
 
-/* Search Bar */
-.search-bar {
-  position: relative;
-  margin-left: 20px;
-}
-
-.search-bar input {
-  padding: 8px 30px 8px 15px;
-  border-radius: 5px;
-  border: 1px solid #444;
-  background: var(--secondary-light);
-  color: var(--text-primary);
-}
-
-.search-bar i {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  color: var(--text-secondary);
+  .search-bar {
+    margin-right: 0;
+    width: 100%;
+    max-width: 150px;
+  }
 }
 
 /* Hero Section */
